@@ -1,7 +1,7 @@
-import { BaseType } from "./BaseType";
+import { BaseType } from "./BaseType.ts";
 
 export class VoidType extends BaseType {
-    public getId(): string {
-        return "void";
-    }
+  public getId(): string {
+    return "void";
+  }
 }

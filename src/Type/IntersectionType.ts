@@ -1,15 +1,15 @@
-import { BaseType } from "./BaseType";
+import { BaseType } from "./BaseType.ts";
 
 export class IntersectionType extends BaseType {
-    public constructor(private types: BaseType[]) {
-        super();
-    }
+  public constructor(private types: BaseType[]) {
+    super();
+  }
 
-    public getId(): string {
-        return `(${this.types.map((type) => type.getId()).join("&")})`;
-    }
+  public getId(): string {
+    return `(${this.types.map((type) => type.getId()).join("&")})`;
+  }
 
-    public getTypes(): BaseType[] {
-        return this.types;
-    }
+  public getTypes(): BaseType[] {
+    return this.types;
+  }
 }

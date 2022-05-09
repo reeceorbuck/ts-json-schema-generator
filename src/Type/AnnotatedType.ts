@@ -1,26 +1,30 @@
-import { BaseType } from "./BaseType";
-import { hash } from "../Utils/nodeKey";
+import { BaseType } from "./BaseType.ts";
+import { hash } from "../Utils/nodeKey.ts";
 
 export interface Annotations {
-    [name: string]: any;
+  [name: string]: any;
 }
 
 export class AnnotatedType extends BaseType {
-    public constructor(private type: BaseType, private annotations: Annotations, private nullable: boolean) {
-        super();
-    }
+  public constructor(
+    private type: BaseType,
+    private annotations: Annotations,
+    private nullable: boolean,
+  ) {
+    super();
+  }
 
-    public getId(): string {
-        return this.type.getId() + hash([this.isNullable(), this.annotations]);
-    }
+  public getId(): string {
+    return this.type.getId() + hash([this.isNullable(), this.annotations]);
+  }
 
-    public getType(): BaseType {
-        return this.type;
-    }
-    public getAnnotations(): Annotations {
-        return this.annotations;
-    }
-    public isNullable(): boolean {
-        return this.nullable;
-    }
+  public getType(): BaseType {
+    return this.type;
+  }
+  public getAnnotations(): Annotations {
+    return this.annotations;
+  }
+  public isNullable(): boolean {
+    return this.nullable;
+  }
 }

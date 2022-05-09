@@ -1,6 +1,6 @@
-import ts from "typescript";
-import { NodeParser } from "../NodeParser";
+import ts from "../tsAdapter.ts";
+import { NodeParser } from "../NodeParser.ts";
 
 export interface SubNodeParser extends NodeParser {
-    supportsNode(node: ts.Node): boolean;
+  supportsNode(node: ts.Node): boolean;
 }

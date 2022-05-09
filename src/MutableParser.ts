@@ -1,5 +1,5 @@
-import { SubNodeParser } from "./SubNodeParser";
+import { SubNodeParser } from "./SubNodeParser.ts";
 
 export interface MutableParser {
-    addNodeParser(parser: SubNodeParser): MutableParser;
+  addNodeParser(parser: SubNodeParser): MutableParser;
 }

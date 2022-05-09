@@ -1,7 +1,7 @@
-import { BaseType } from "../Type/BaseType";
-import { EnumType } from "../Type/EnumType";
-import { UnionType } from "../Type/UnionType";
-import { derefType } from "./derefType";
+import { BaseType } from "../Type/BaseType.ts";
+import { EnumType } from "../Type/EnumType.ts";
+import { UnionType } from "../Type/UnionType.ts";
+import { derefType } from "./derefType.ts";
 
 /**
  * Narrows the given type by passing all variants to the given predicate function. So when type is a union type then
@@ -16,44 +16,44 @@ import { derefType } from "./derefType";
  * @return The narrowed down type.
  */
 export function narrowType(
-    type: BaseType | undefined,
-    // TODO: remove the next line
-    // eslint-disable-next-line no-shadow
-    predicate: (type: BaseType | undefined) => boolean
+  type: BaseType | undefined,
+  // TODO: remove the next line
+  // eslint-disable-next-line no-shadow
+  predicate: (type: BaseType | undefined) => boolean,
 ): BaseType | undefined {
-    const derefed = derefType(type);
-    if (derefed instanceof UnionType || derefed instanceof EnumType) {
-        let changed = false;
-        const types: BaseType[] = [];
-        for (const sub of derefed.getTypes()) {
-            const derefedSub = derefType(sub);
+  const derefed = derefType(type);
+  if (derefed instanceof UnionType || derefed instanceof EnumType) {
+    let changed = false;
+    const types: BaseType[] = [];
+    for (const sub of derefed.getTypes()) {
+      const derefedSub = derefType(sub);
 
-            // Recursively narrow down all types within the union
-            const narrowed = narrowType(derefedSub, predicate);
-            if (narrowed !== undefined) {
-                if (narrowed === derefedSub) {
-                    types.push(sub);
-                } else {
-                    types.push(narrowed);
-                    changed = true;
-                }
-            } else {
-                changed = true;
-            }
+      // Recursively narrow down all types within the union
+      const narrowed = narrowType(derefedSub, predicate);
+      if (narrowed !== undefined) {
+        if (narrowed === derefedSub) {
+          types.push(sub);
+        } else {
+          types.push(narrowed);
+          changed = true;
         }
-
-        // When union types were changed then return new narrowed-down type, otherwise return the original one to
-        // keep definitions
-        if (changed) {
-            if (types.length === 0) {
-                return undefined;
-            } else if (types.length === 1) {
-                return types[0];
-            } else {
-                return new UnionType(types);
-            }
-        }
-        return type;
+      } else {
+        changed = true;
+      }
     }
-    return predicate(derefed) ? type : undefined;
+
+    // When union types were changed then return new narrowed-down type, otherwise return the original one to
+    // keep definitions
+    if (changed) {
+      if (types.length === 0) {
+        return undefined;
+      } else if (types.length === 1) {
+        return types[0];
+      } else {
+        return new UnionType(types);
+      }
+    }
+    return type;
+  }
+  return predicate(derefed) ? type : undefined;
 }

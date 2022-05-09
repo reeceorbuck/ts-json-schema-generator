@@ -1,7 +1,7 @@
-import { PrimitiveType } from "./PrimitiveType";
+import { PrimitiveType } from "./PrimitiveType.ts";
 
 export class NullType extends PrimitiveType {
-    public getId(): string {
-        return "null";
-    }
+  public getId(): string {
+    return "null";
+  }
 }

@@ -1,7 +1,7 @@
-import { BaseError } from "./BaseError";
+import { BaseError } from "./BaseError.ts";
 
 export class LogicError extends BaseError {
-    public constructor(private msg: string) {
-        super(msg);
-    }
+  public constructor(private msg: string) {
+    super(msg);
+  }
 }

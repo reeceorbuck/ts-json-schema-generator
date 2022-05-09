@@ -1,17 +1,17 @@
-import { BaseType } from "./BaseType";
+import { BaseType } from "./BaseType.ts";
 
 export type LiteralValue = string | number | boolean;
 
 export class LiteralType extends BaseType {
-    public constructor(private value: LiteralValue) {
-        super();
-    }
+  public constructor(private value: LiteralValue) {
+    super();
+  }
 
-    public getId(): string {
-        return JSON.stringify(this.value);
-    }
+  public getId(): string {
+    return JSON.stringify(this.value);
+  }
 
-    public getValue(): LiteralValue {
-        return this.value;
-    }
+  public getValue(): LiteralValue {
+    return this.value;
+  }
 }

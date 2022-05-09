@@ -1,6 +1,6 @@
-import ts from "typescript";
-import { hasJsDocTag } from "./hasJsDocTag";
+import ts from "../tsAdapter.ts";
+import { hasJsDocTag } from "./hasJsDocTag.ts";
 
 export function isNodeHidden(node: ts.Node): boolean {
-    return hasJsDocTag(node, "hidden");
+  return hasJsDocTag(node, "hidden");
 }

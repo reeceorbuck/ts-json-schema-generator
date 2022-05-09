@@ -1,15 +1,15 @@
-import { BaseType } from "./BaseType";
+import { BaseType } from "./BaseType.ts";
 
 export class AliasType extends BaseType {
-    public constructor(private id: string, private type: BaseType) {
-        super();
-    }
+  public constructor(private id: string, private type: BaseType) {
+    super();
+  }
 
-    public getId(): string {
-        return this.id;
-    }
+  public getId(): string {
+    return this.id;
+  }
 
-    public getType(): BaseType {
-        return this.type;
-    }
+  public getType(): BaseType {
+    return this.type;
+  }
 }
