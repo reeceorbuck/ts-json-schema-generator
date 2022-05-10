@@ -5,7 +5,8 @@ import { createRequire } from 'https://deno.land/std@0.138.0/node/module.ts';
 // console.log('import.meta.url: ', url.pathToFileURL(import.meta.url));
 // internal import.meta.url:  file:///Users/reeceorbuck/Projects/ts-json-schema-generator/nodeCompatibility/exports.ts
 // external import.meta.url:  https://raw.githubusercontent.com/reeceorbuck/ts-json-schema-generator/next/nodeCompatibility/exports.ts
-// "file:///Users/reeceorbuck/Library/Caches/deno/gen/file/Users/reeceorbuck/Projects/ts-json-schema-generator/nodeCompatibility/exports.ts.js"
+const hardCode =
+	'file:///Users/reeceorbuck/Library/Caches/deno/gen/file/Users/reeceorbuck/Projects/ts-json-schema-generator/nodeCompatibility/exports.ts.js';
 
 // const p = path.toFileUrl('/home/foo');
 
@@ -15,5 +16,5 @@ import { createRequire } from 'https://deno.land/std@0.138.0/node/module.ts';
 
 console.log('Deno.mainModule: ', Deno.mainModule);
 
-const require = createRequire(Deno.mainModule);
+const require = createRequire(hardCode);
 export default require('typescript');
