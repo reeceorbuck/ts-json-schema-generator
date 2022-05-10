@@ -14,7 +14,7 @@ const hardCode =
 
 // console.log('test: ', new URL('static-files', import.meta.url).pathname);
 
-console.log('Deno.mainModule: ', Deno.mainModule);
+console.log('hardCode: ', hardCode);
 
 const require = createRequire(hardCode);
 export default require('typescript');
