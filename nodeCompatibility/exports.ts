@@ -9,11 +9,6 @@ console.log('import.meta.url: ', url.pathToFileURL(import.meta.url));
 
 const p = path.toFileUrl('/home/foo');
 
-console.log(
-	'p: ',
-	path.dirname(),
-);
-
 path.toFileUrl('/var/tmp/a.log');
 
 console.log('test: ', new URL('static-files', import.meta.url).pathname);
