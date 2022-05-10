@@ -61,6 +61,7 @@ function getTsConfig(config: Config) {
 
 export function createProgram(config: Config): ts.Program {
 	console.log('path.resolve(): ', path.resolve());
+	console.log('[path.globToRegExp: ', [path.globToRegExp(path.normalize(path.resolve(config.path!)))]);
 	const files = [...walkSync(path.normalize(path.resolve()), {
 		match: [path.globToRegExp(path.normalize(path.resolve(config.path!)))],
 		includeDirs: false,
