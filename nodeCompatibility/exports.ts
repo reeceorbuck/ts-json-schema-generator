@@ -8,13 +8,14 @@ import url from 'https://deno.land/std@0.138.0/node/url.ts';
 // external import.meta.url:  https://raw.githubusercontent.com/reeceorbuck/ts-json-schema-generator/next/nodeCompatibility/exports.ts
 const hardCode = '/Users/reeceorbuck/Library/Caches/deno/gen/file/Users/reeceorbuck/Projects/ts-json-schema-generator/';
 
+const baseHardCode = '/Users/reeceorbuck/Projects/typescript-json-schema/';
 // const p = path.toFileUrl('/home/foo');
 
 // path.toFileUrl('/var/tmp/a.log');
 
 // console.log('test: ', new URL('static-files', import.meta.url).pathname);
 
-console.log('hardCode url href: ', url.pathToFileURL(hardCode).href);
+console.log('hardCode url href: ', url.pathToFileURL(baseHardCode).href);
 
-const require = createRequire(url.pathToFileURL(hardCode).href);
+const require = createRequire(url.pathToFileURL(baseHardCode).href);
 export default require('typescript');
