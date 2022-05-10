@@ -1,4 +1,5 @@
 import { createRequire } from 'https://deno.land/std@0.138.0/node/module.ts';
+import url from 'https://deno.land/std@0.138.0/node/url.ts';
 // import * as path from 'https://deno.land/std@0.138.0/path/mod.ts';
 // import * as url from 'https://deno.land/std@0.138.0/node/url.ts';
 
@@ -6,7 +7,7 @@ import { createRequire } from 'https://deno.land/std@0.138.0/node/module.ts';
 // internal import.meta.url:  file:///Users/reeceorbuck/Projects/ts-json-schema-generator/nodeCompatibility/exports.ts
 // external import.meta.url:  https://raw.githubusercontent.com/reeceorbuck/ts-json-schema-generator/next/nodeCompatibility/exports.ts
 const hardCode =
-	'file:///Users/reeceorbuck/Library/Caches/deno/gen/file/Users/reeceorbuck/Projects/ts-json-schema-generator/nodeCompatibility/exports.ts.js';
+	'/Users/reeceorbuck/Library/Caches/deno/gen/file/Users/reeceorbuck/Projects/ts-json-schema-generator/nodeCompatibility/exports.ts.js';
 
 // const p = path.toFileUrl('/home/foo');
 
@@ -14,7 +15,7 @@ const hardCode =
 
 // console.log('test: ', new URL('static-files', import.meta.url).pathname);
 
-console.log('hardCode: ', hardCode);
+console.log('hardCode url: ', url.pathToFileURL(hardCode));
 
-const require = createRequire(hardCode);
+const require = createRequire(url.pathToFileURL(hardCode));
 export default require('typescript');
