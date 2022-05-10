@@ -14,7 +14,7 @@ const hardCode = '/Users/reeceorbuck/Library/Caches/deno/gen/file/Users/reeceorb
 
 // console.log('test: ', new URL('static-files', import.meta.url).pathname);
 
-console.log('hardCode url: ', url.pathToFileURL(hardCode).href);
+console.log('hardCode url href: ', url.pathToFileURL(hardCode).href);
 
 const require = createRequire(url.pathToFileURL(hardCode).href);
 export default require('typescript');
