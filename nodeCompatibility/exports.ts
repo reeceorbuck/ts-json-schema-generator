@@ -8,8 +8,9 @@ const tempDirPath = Deno.env.get('TMPDIR');
 
 try {
 	await Deno.stat(url.pathToFileURL(`${tempDirPath}node_modules/typescript`));
-	console.log('Temp typescript module already exists, no need to fetch it again.');
+	// console.log('Temp typescript module already exists, no need to fetch it again.');
 } catch {
+	console.log('Fetching Typescript dependency for caching...');
 	const response = await fetch('https://github.com/reeceorbuck/typscriptModule/zipball/main');
 	const blob = await response.blob();
 	const buf = await blob.arrayBuffer();
@@ -37,13 +38,12 @@ try {
 		stderr: 'piped',
 	});
 
-	const [status, stdout, stderr] = await Promise.all([
+	await Promise.all([
 		p.status(),
 		p.output(),
 		p.stderrOutput(),
 	]);
 	p.close();
-	console.log('status:', status);
 
 	await Deno.remove(url.pathToFileURL(`${tempDirPath}typescript.zip`));
 
