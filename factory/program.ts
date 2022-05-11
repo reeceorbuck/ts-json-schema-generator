@@ -1,5 +1,5 @@
 import * as path from 'https://deno.land/std@0.138.0/path/mod.ts';
-import { walkSync } from 'https://deno.land/std@0.136.0/fs/mod.ts';
+import { expandGlobSync, walkSync } from 'https://deno.land/std@0.136.0/fs/mod.ts';
 
 import ts from '../src/tsAdapter.ts';
 
@@ -64,6 +64,10 @@ export function createProgram(config: Config): ts.Program {
 		match: [path.globToRegExp(path.normalize(path.resolve(config.path!)))],
 		includeDirs: false,
 	})].map((dirEntry) => path.normalize(dirEntry.path));
+
+	// const newFiles = [...expandGlobSync(config.path!)].map((dirEntry) => path.normalize(dirEntry.path));
+	//console.log('old files: ', files);
+	// console.log('newFiles:', newFiles);
 
 	const rootNamesFromPath = config.path ? files : [];
 	const tsconfig = getTsConfig(config);
