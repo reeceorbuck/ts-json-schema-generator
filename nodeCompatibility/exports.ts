@@ -25,6 +25,9 @@ try {
 	const zipSourcePath = url.pathToFileURL(`${tempDirPath}/typescript.zip`).pathname;
 	const destinationPath = url.pathToFileURL(`${tempDirPath}/node_modules`).pathname;
 
+	console.log('zipSourcePath: ', zipSourcePath);
+	console.log('destinationPath: ', destinationPath);
+
 	const p = Deno.run({
 		cmd: Deno.build.os === 'windows'
 			? [
@@ -47,7 +50,7 @@ try {
 	]);
 	p.close();
 
-	await Deno.remove(url.pathToFileURL(`${tempDirPath}/typescript.zip`));
+	// await Deno.remove(url.pathToFileURL(`${tempDirPath}/typescript.zip`));
 
 	await Deno.rename(
 		url.pathToFileURL(`${tempDirPath}/node_modules/reeceorbuck-typscriptModule-8f10914`),
