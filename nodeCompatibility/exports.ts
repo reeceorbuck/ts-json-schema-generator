@@ -43,12 +43,14 @@ try {
 		stderr: 'piped',
 	});
 
-	await Promise.all([
+	const process = await Promise.all([
 		p.status(),
 		p.output(),
 		p.stderrOutput(),
 	]);
 	p.close();
+
+	console.log('process: ', process);
 
 	// await Deno.remove(url.pathToFileURL(`${tempDirPath}/typescript.zip`));
 
