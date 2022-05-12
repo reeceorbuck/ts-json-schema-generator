@@ -3,10 +3,9 @@ import url from 'https://deno.land/std@0.138.0/node/url.ts';
 import tempDir from 'https://deno.land/x/temp_dir@v1.0.0/mod.ts';
 import { writeAll } from 'https://deno.land/std@0.138.0/streams/mod.ts';
 
-const globalTypescript = '/opt/homebrew/lib/';
-// TODO: this needs to be configurable for different OS and paths
+const _globalTypescript = '/opt/homebrew/lib/';
+
 const tempDirPath = tempDir;
-console.log('tempDirPath as file URL: ', url.pathToFileURL(`${tempDirPath}/`));
 
 try {
 	await Deno.stat(url.pathToFileURL(`${tempDirPath}/node_modules/typescript`));
@@ -50,9 +49,9 @@ try {
 	]);
 	p.close();
 
-	console.log('status: ', status);
+	console.log('status of unzip operation: ', status);
 
-	// await Deno.remove(url.pathToFileURL(`${tempDirPath}/typescript.zip`));
+	await Deno.remove(url.pathToFileURL(`${tempDirPath}/typescript.zip`));
 
 	await Deno.rename(
 		url.pathToFileURL(`${tempDirPath}/node_modules/reeceorbuck-typscriptModule-8f10914`),
