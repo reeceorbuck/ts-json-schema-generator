@@ -22,8 +22,8 @@ try {
 	await writeAll(file, data);
 	Deno.close(file.rid);
 
-	const zipSourcePath = url.pathToFileURL(`${tempDirPath}/typescript.zip`).pathname;
-	const destinationPath = url.pathToFileURL(`${tempDirPath}/node_modules`).pathname;
+	const zipSourcePath = url.pathToFileURL(`${tempDirPath}/typescript.zip`);
+	const destinationPath = url.pathToFileURL(`${tempDirPath}/node_modules`);
 
 	console.log('zipSourcePath: ', zipSourcePath);
 	console.log('destinationPath: ', destinationPath);
@@ -34,11 +34,11 @@ try {
 				'PowerShell',
 				'Expand-Archive',
 				'-Path',
-				zipSourcePath,
+				zipSourcePath.pathname,
 				'-DestinationPath',
-				destinationPath,
+				destinationPath.pathname,
 			]
-			: ['unzip', zipSourcePath, '-d', destinationPath],
+			: ['unzip', zipSourcePath.pathname, '-d', destinationPath.pathname],
 		stdout: 'piped',
 		stderr: 'piped',
 	});
