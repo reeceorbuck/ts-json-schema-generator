@@ -6,6 +6,7 @@ import { writeAll } from 'https://deno.land/std@0.138.0/streams/mod.ts';
 const globalTypescript = '/opt/homebrew/lib/';
 // TODO: this needs to be configurable for different OS and paths
 const tempDirPath = tempDir;
+console.log('tempDirPath: ', tempDirPath);
 
 try {
 	await Deno.stat(url.pathToFileURL(`${tempDirPath}node_modules/typescript`));
