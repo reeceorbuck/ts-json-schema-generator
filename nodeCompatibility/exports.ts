@@ -1,6 +1,6 @@
 import { createRequire } from 'https://deno.land/std@0.138.0/node/module.ts';
 import url from 'https://deno.land/std@0.138.0/node/url.ts';
-import * as tempDir from 'https://deno.land/x/temp_dir@v1.0.0/mod.ts';
+import tempDir from 'https://deno.land/x/temp_dir@v1.0.0/mod.ts';
 import { writeAll } from 'https://deno.land/std@0.138.0/streams/mod.ts';
 
 const globalTypescript = '/opt/homebrew/lib/';
