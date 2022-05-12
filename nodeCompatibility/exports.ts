@@ -34,9 +34,9 @@ try {
 				'PowerShell',
 				'Expand-Archive',
 				'-Path',
-				zipSourcePath.pathname,
+				zipSourcePath.pathname.slice(1),
 				'-DestinationPath',
-				destinationPath.pathname,
+				destinationPath.pathname.slice(1),
 			]
 			: ['unzip', zipSourcePath.pathname, '-d', destinationPath.pathname],
 		stdout: 'piped',
