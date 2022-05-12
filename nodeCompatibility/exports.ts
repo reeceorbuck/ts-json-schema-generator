@@ -18,12 +18,12 @@ try {
 	const buf = await blob.arrayBuffer();
 	const data = new Uint8Array(buf);
 	// We then create a new file and write into it
-	const file = await Deno.create(url.pathToFileURL(`${tempDirPath}typescript.zip`));
+	const file = await Deno.create(url.pathToFileURL(`${tempDirPath}/typescript.zip`));
 	await writeAll(file, data);
 	Deno.close(file.rid);
 
-	const zipSourcePath = url.pathToFileURL(`${tempDirPath}typescript.zip`).pathname;
-	const destinationPath = url.pathToFileURL(`${tempDirPath}node_modules`).pathname;
+	const zipSourcePath = url.pathToFileURL(`${tempDirPath}/typescript.zip`).pathname;
+	const destinationPath = url.pathToFileURL(`${tempDirPath}/node_modules`).pathname;
 
 	const p = Deno.run({
 		cmd: Deno.build.os === 'windows'
@@ -47,11 +47,11 @@ try {
 	]);
 	p.close();
 
-	await Deno.remove(url.pathToFileURL(`${tempDirPath}typescript.zip`));
+	await Deno.remove(url.pathToFileURL(`${tempDirPath}/typescript.zip`));
 
 	await Deno.rename(
-		url.pathToFileURL(`${tempDirPath}node_modules/reeceorbuck-typscriptModule-8f10914`),
-		url.pathToFileURL(`${tempDirPath}node_modules/typescript`),
+		url.pathToFileURL(`${tempDirPath}/node_modules/reeceorbuck-typscriptModule-8f10914`),
+		url.pathToFileURL(`${tempDirPath}/node_modules/typescript`),
 	);
 }
 
