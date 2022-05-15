@@ -60,14 +60,14 @@ function getTsConfig(config: Config) {
 }
 
 export function createProgram(config: Config): ts.Program {
-	const files = [...walkSync(path.normalize(path.resolve()), {
+	const oldFiles = [...walkSync(path.normalize(path.resolve()), {
 		match: [path.globToRegExp(path.normalize(path.resolve(config.path!)))],
 		includeDirs: false,
 	})].map((dirEntry) => path.normalize(dirEntry.path));
 
-	// const newFiles = [...expandGlobSync(config.path!)].map((dirEntry) => path.normalize(dirEntry.path));
-	//console.log('old files: ', files);
-	// console.log('newFiles:', newFiles);
+	const files = [...expandGlobSync(config.path!)].map((dirEntry) => dirEntry.path.replace(/\\/g, '/'));
+	console.log('old files: ', oldFiles);
+	console.log('newFiles:', files);
 
 	const rootNamesFromPath = config.path ? files : [];
 	const tsconfig = getTsConfig(config);
@@ -78,6 +78,7 @@ export function createProgram(config: Config): ts.Program {
 		throw new NoRootNamesError();
 	}
 
+	console.log('rootNames: ', rootNames);
 	const program: ts.Program = ts.createProgram(
 		rootNames as string[],
 		tsconfig.options,
