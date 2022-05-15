@@ -1,0 +1,273 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Json": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Json"
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Json"
+          }
+        }
+      ]
+    },
+    "FormattedTextNodeCore": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "_publicIndexable": {
+          "type": "boolean"
+        },
+        "_excludeFromParentNode": {
+          "type": "boolean"
+        },
+        "_linkedId": {
+          "type": "string"
+        },
+        "_comment": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "_id"
+      ],
+      "additionalProperties": false
+    },
+    "TextNodeReference": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "_dataId": {
+          "type": "string"
+        },
+        "_childDataBucket": {
+          "type": "string"
+        },
+        "_consolidated": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "_id",
+        "_dataId",
+        "_childDataBucket",
+        "_consolidated",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "PermissionCore": {
+      "type": "object",
+      "properties": {
+        "parentId": {
+          "type": "string"
+        },
+        "childId": {
+          "type": "string"
+        },
+        "dataId": {
+          "type": "string"
+        },
+        "childDataBucket": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "indexTime": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parentId",
+        "childId",
+        "dataId",
+        "childDataBucket",
+        "referenceId"
+      ],
+      "additionalProperties": false
+    },
+    "PermissionComplete": {
+      "type": "object",
+      "properties": {
+        "parentId": {
+          "type": "string"
+        },
+        "childId": {
+          "type": "string"
+        },
+        "dataId": {
+          "type": "string"
+        },
+        "childDataBucket": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "indexTime": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string"
+        },
+        "deletedTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "readKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "writeKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updatedTime": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "childDataBucket",
+        "childId",
+        "createdTime",
+        "dataId",
+        "deletedTime",
+        "indexTime",
+        "parentId",
+        "referenceId",
+        "updatedTime"
+      ],
+      "additionalProperties": false
+    },
+    "DataNodeCore": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Json"
+        },
+        "deleted": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    "TimestampDataNode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "const": "reinitializeTimestamp"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "timestamp": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "timestamp"
+          ],
+          "additionalProperties": false
+        },
+        "deleted": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "data",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "DataNodeComplete": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/Json"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "deletedTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateTime": {
+          "$ref": "#/definitions/Json"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "data",
+        "deletedTime",
+        "id",
+        "timestamp",
+        "updateTime"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
